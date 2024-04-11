@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log/slog"
 	"net"
 	"time"
 
@@ -52,8 +51,8 @@ func SynScan(dstIp string, dstPort int) (string, int, error) {
 		DstPort: dstport,
 		SYN:     true,
 	}
-	err = tcp.SetNetworkLayerForChecksum(ip)
-	slog.Error("SetNetworkLayerForChecksum", slog.Any("err", err))
+	_ = tcp.SetNetworkLayerForChecksum(ip)
+	// slog.Error("SetNetworkLayerForChecksum", slog.Any("err", err))
 
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{
